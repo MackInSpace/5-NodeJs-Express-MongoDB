@@ -49,7 +49,7 @@ promotionRouter.route('/:promotionId')
 })
 .post((req, res) => {
     res.statusCode = 403;
-    res.end(`POST operation not supported on /campsites/${req.params.campsiteId}`);
+    res.end(`POST operation not supported on /promotions/${req.params.promotionId}`);
 })
 .put((req, res, next) => {
     Promotion.findByIdAndUpdate(req.params.promotionId, {
