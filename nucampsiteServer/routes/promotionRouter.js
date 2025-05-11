@@ -38,7 +38,7 @@ promotionRouter.route('/')
 });
 
 promotionRouter.route('/:promotionId')
-.get((req, res) => {
+.get((req, res, next) => {
     Promotion.findById(req.params.promotionId)
     .then(promotion => {
         res.statusCode = 200;
@@ -62,13 +62,14 @@ promotionRouter.route('/:promotionId')
     })
     .catch(err => next(err));
 })
-.delete((req, res) => {
+.delete((req, res, next) => {
     Promotion.findByIdAndDelete(req.params.promotionId)
     .then(response => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
         res.json(response);
     })
+    .catch(err => next(err));
 });
 
 module.exports = promotionRouter;
